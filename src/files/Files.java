@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.File;
 
 public class Files {
+    
     public int contarLineas(String name){
         File archivo; //apuntar a un archivo fisico en el disco duro
         FileReader reader; //para abrir el archivo 
