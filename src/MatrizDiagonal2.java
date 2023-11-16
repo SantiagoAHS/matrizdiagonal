@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import files.Files;
 
 public class MatrizDiagonal2 {
 
@@ -40,25 +41,34 @@ public class MatrizDiagonal2 {
         scanner.close();
     }
 
-    // Construye una matriz diagonal con valores ingresados por el usuario.
+   // Construye una matriz diagonal con valores ingresados por el usuario.
     private static void construirMatrizDiagonal(Scanner scanner) {
+        // Solicita al usuario que ingrese el tamaño de la matriz diagonal.
         System.out.println("Ingrese el tamaño de la matriz diagonal:");
-        int n = scanner.nextInt();
+        int n = scanner.nextInt(); // Lee el tamaño de la matriz desde la entrada del usuario.
+        
+        // Crea una matriz cuadrada de tamaño n x n para almacenar la matriz diagonal.
         int[][] matriz = new int[n][n];
 
+        // Recorre las filas de la matriz.
         for (int i = 0; i < n; i++) {
+            // Recorre las columnas de la matriz .
             for (int j = 0; j < n; j++) {
+                // Si la posición actual es parte de la diagonal principal, solicita al usuario un valor.
                 if (i == j) {
                     matriz[i][j] = ingresarValorEnPosicion(i, j, scanner);
                 } else {
+                    // Si no es parte de la diagonal, establece el valor en 0.
                     matriz[i][j] = 0;
                 }
             }
         }
 
-        System.out.println("Matriz Diagonal:");
-        imprimirMatriz(matriz);
-    }
+    // Imprime la matriz diagonal resultante en la consola.
+    System.out.println("Matriz Diagonal:");
+    imprimirMatriz(matriz);
+}
+
 
     // Construye una matriz bidiagonal superior con valores ingresados por el usuario.
     private static void construirBidiagonalSuperior(Scanner scanner) {
@@ -124,5 +134,7 @@ public class MatrizDiagonal2 {
             }
             System.out.println();
         }
+        Files.matrizAarchivo("matriz_resultante", matriz);
+        System.out.println("Matriz guardada en el archivo: matriz_resultante.txt");
     }
 }

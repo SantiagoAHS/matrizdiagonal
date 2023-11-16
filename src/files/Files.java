@@ -1,13 +1,43 @@
 package files;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.File;
 
 public class Files {
+
+    // Método para escribir una matriz en un archivo
+    public static void matrizAarchivo(String name, int[][] matriz) {
+        FileWriter archivo;
+        BufferedWriter writer;
+
+        try {
+            archivo = new FileWriter("D:\\archivos\\" + name + ".txt");
+            writer = new BufferedWriter(archivo);
+
+            // Escribir las dimensiones de la matriz en la primera línea
+            writer.write(matriz.length + " X " + matriz[0].length);
+            writer.newLine();
+
+            // Escribir los elementos de la matriz
+            for (int[] fila : matriz) {
+                for (int elemento : fila) {
+                    writer.write(elemento + " ");
+                }
+                writer.newLine();
+            }
+
+            writer.close();
+            archivo.close();
+        } catch (IOException e) {
+            System.out.println("Error al escribir el archivo: " + e.toString());
+        }
+    }
     
     public int contarLineas(String name){
         File archivo; //apuntar a un archivo fisico en el disco duro
@@ -150,5 +180,7 @@ public class Files {
                 System.out.println("Error al crear el archivo");
             }
     }
+
+    
     
 }
